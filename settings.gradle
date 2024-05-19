@@ -1,0 +1,15 @@
+rootProject.name = 'penguin-library-hexagonal-ddd'
+
+include ':app-main'
+include ':model'
+include ':useCase'
+include ':helpers'
+include 'mongo-repository'
+include 'reactive-web'
+
+project(':app-main').projectDir = file('./src/applications/app-main')
+project(':model').projectDir = file('./src/domain/model')
+project(':useCase').projectDir = file('./src/domain/useCase')
+project(':helpers').projectDir = file('./src/infrastructure/helpers')
+project(':mongo-repository').projectDir = file('./src/infrastructure/driven-adapters/mongo-repository')
+project(':reactive-web').projectDir = file('./src/infrastructure/entry-points/reactive-web')
