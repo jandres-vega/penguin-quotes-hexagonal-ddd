@@ -1,0 +1,1 @@
+# penguin-quotes-hexagonal-ddd
