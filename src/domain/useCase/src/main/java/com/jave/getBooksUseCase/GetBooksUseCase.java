@@ -17,7 +17,7 @@ public class GetBooksUseCase extends CommandUseCase<CalculateOptimalPurchaseComm
     private final DomainEventRepository repository;
 
     @Autowired
-    public GetBooksUseCase(DomainEventRepository repository) {
+    public GetBooksUseCase(@Qualifier("mongoRepositoryAdapter") DomainEventRepository repository) {
         this.repository = repository;
     }
 
