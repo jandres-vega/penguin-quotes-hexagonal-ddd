@@ -9,7 +9,6 @@ import java.util.List;
 
 public class Novel extends Copy{
 
-
     public Novel(String id, Type type, Title title, Author author, Stock stock, Price price, PublicationYear publicationYear) {
         super(id, type, title, author, stock, price, publicationYear);
         calculateIndividualPrice();

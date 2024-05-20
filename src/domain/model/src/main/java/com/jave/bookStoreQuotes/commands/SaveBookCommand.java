@@ -71,5 +71,4 @@ public class SaveBookCommand extends Command {
         this.type = type;
     }
 
-
 }

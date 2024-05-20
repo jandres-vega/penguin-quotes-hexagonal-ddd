@@ -6,6 +6,7 @@ import com.jave.bookStoreQuotes.values.copy.*;
 import com.jave.bookStoreQuotes.values.identities.CopyId;
 import com.jave.generic.Entity;
 
+import java.util.Comparator;
 import java.util.List;
 
 public abstract class Copy extends Entity<CopyId> {
@@ -32,11 +33,41 @@ public abstract class Copy extends Entity<CopyId> {
 
     public abstract void calculateIndividualPrice();
 
+    public static Copy findCheapest(List<Copy> copies, String type) {
+        return copies.stream()
+                .filter(copy -> copy.getType().value().equals(type))
+                .min(Comparator.comparingDouble(copy -> copy.getPrice().value()))
+                .orElse(null);
+    }
+
+    public static int countBooks(List<Copy> copies) {
+        return (int) copies.stream()
+                .filter(copy -> copy.getType().value().equals("Book"))
+                .count();
+    }
+
+    public static int countNovels(List<Copy> copies) {
+        return (int) copies.stream()
+                .filter(copy -> copy.getType().value().equals("Novel"))
+                .count();
+    }
+
+    public static double getDiscountedPrice(double price, int count) {
+        if (count > 10) {
+            double discount = 0.0015 * (count - 10);
+            return price * (1 - discount);
+        }
+        return price;
+    }
+
     public abstract Copy findCheapestCopy(List<Copy> copies);
 
-    public void applyDiscount(){}
+    public double appplyIncrementPrice(){
+        double basePrice = this.price.value();
+        double increment = 0.02;
 
-    public void appplyIncrementPrice(){}
+        return basePrice * (1 + increment);
+    }
 
     public Price getPrice() {
         return price;
@@ -62,9 +93,7 @@ public abstract class Copy extends Entity<CopyId> {
         return publicationYear;
     }
 
-    public Type getType() {
-        return type;
-    }
+    public Type getType() {return type;}
 
     public void setType(Type type) {
         this.type = type;
@@ -86,16 +115,7 @@ public abstract class Copy extends Entity<CopyId> {
         this.discountMayor = discountMayor;
     }
 
-    public DiscountCustomer getDiscountCustomer() {
-        return discountCustomer;
-    }
+    public String getId(){return super.identity().value();}
 
-    public void setDiscountCustomer(DiscountCustomer discountCustomer) {
-        this.discountCustomer = discountCustomer;
-    }
-
-    public String getId(){
-        return super.identity().value();
-    }
 
 }

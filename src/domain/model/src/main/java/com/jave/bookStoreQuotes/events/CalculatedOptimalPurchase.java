@@ -4,6 +4,7 @@ package com.jave.bookStoreQuotes.events;
 import com.jave.bookStoreQuotes.commands.ObjectString;
 import com.jave.generic.DomainEvent;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class CalculatedOptimalPurchase extends DomainEvent {
@@ -11,37 +12,24 @@ public class CalculatedOptimalPurchase extends DomainEvent {
     private String bookStoreQuoteId;
     private List<ObjectString> copies;
     private double budget;
-    private double purchase;
-    private double total;
+    private int quantityBooks;
+    private int quantityNovels;
+    private double priceTotalCopiesDiscount;
+    private double totalPurchase;
+    private LocalDate customerCreatedDate;
 
+    public CalculatedOptimalPurchase(List<ObjectString> bookIds, double budget, LocalDate customerCreatedDate) {
+        super(TypeEvent.CALCULATED_OPTIMAL_PURCHASE.toString());
+        this.copies = bookIds;
+        this.budget = budget;
+        this.customerCreatedDate = customerCreatedDate;
+    }
 
     public void setCopies(List<ObjectString> copies) {
         this.copies = copies;
     }
 
     public void setBudget(double budget) {
-        this.budget = budget;
-    }
-
-    public double getPurchase() {
-        return purchase;
-    }
-
-    public void setPurchase(double purchase) {
-        this.purchase = purchase;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public CalculatedOptimalPurchase(List<ObjectString> bookIds, double budget) {
-        super(TypeEvent.CALCULATED_OPTIMAL_PURCHASE.toString());
-        this.copies = bookIds;
         this.budget = budget;
     }
 
@@ -55,11 +43,51 @@ public class CalculatedOptimalPurchase extends DomainEvent {
         this.bookStoreQuoteId = bookStoreQuoteId;
     }
 
-    public List<ObjectString> getIdCopies() {
+    public List<ObjectString> getCopies() {
         return copies;
     }
 
     public double getBudget() {
         return budget;
+    }
+
+    public int getQuantityBooks() {
+        return quantityBooks;
+    }
+
+    public void setQuantityBooks(int quantityBooks) {
+        this.quantityBooks = quantityBooks;
+    }
+
+    public int getQuantityNovels() {
+        return quantityNovels;
+    }
+
+    public void setQuantityNovels(int quantityNovels) {
+        this.quantityNovels = quantityNovels;
+    }
+
+    public double getPriceTotalCopiesDiscount() {
+        return priceTotalCopiesDiscount;
+    }
+
+    public void setPriceTotalCopiesDiscount(double priceTotalCopiesDiscount) {
+        this.priceTotalCopiesDiscount = priceTotalCopiesDiscount;
+    }
+
+    public double getTotalPurchase() {
+        return totalPurchase;
+    }
+
+    public void setTotalPurchase(double totalPurchase) {
+        this.totalPurchase = totalPurchase;
+    }
+
+    public LocalDate getCustomerCreatedDate() {
+        return customerCreatedDate;
+    }
+
+    public void setCustomerCreatedDate(LocalDate customerCreatedDate) {
+        this.customerCreatedDate = customerCreatedDate;
     }
 }

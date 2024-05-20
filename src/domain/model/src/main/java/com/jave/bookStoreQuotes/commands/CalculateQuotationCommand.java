@@ -5,14 +5,13 @@ import com.jave.generic.Command;
 import java.time.LocalDate;
 import java.util.List;
 
-public class CalculateOptimalPurchaseCommand extends Command {
+public class CalculateQuotationCommand extends Command {
 
     private String bookStoreQuoteId;
-    private List<ObjectString> copies;
-    private double budget;
+    private List<ObjectIdsAmount> copies;
     private LocalDate customerCreatedDate;
 
-    public CalculateOptimalPurchaseCommand(){}
+    public CalculateQuotationCommand(){}
 
     public String getBookStoreQuoteId() {
         return bookStoreQuoteId;
@@ -22,20 +21,12 @@ public class CalculateOptimalPurchaseCommand extends Command {
         this.bookStoreQuoteId = bookStoreQuoteId;
     }
 
-    public List<ObjectString> getCopies() {
+    public List<ObjectIdsAmount> getCopies() {
         return copies;
     }
 
-    public void setCopies(List<ObjectString> copies) {
+    public void setCopies(List<ObjectIdsAmount> copies) {
         this.copies = copies;
-    }
-
-    public double getBudget() {
-        return budget;
-    }
-
-    public void setBudget(double budget) {
-        this.budget = budget;
     }
 
     public LocalDate getCustomerCreatedDate() {
